@@ -8,17 +8,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QVBoxLayout *layout = new QVBoxLayout;
 
-    QLabel *testlabel = new QLabel(tr("This should be alligned to the top of the layout"));
-    testlabel->setAlignment(Qt::AlignTop);
-
-    QLabel *testlabel2 = new QLabel(tr("This should be alligned to the bottom of the layout"));
-    testlabel2->setAlignment(Qt::AlignBottom);
+    QMenu *fileMenu = menuBar()->addMenu(tr("File"));
 
     QString greeter = tr("Welcome to QTGimp!");
     statusBar()->showMessage(greeter);
 
-    layout->addWidget(testlabel);
-    layout->addWidget(testlabel2);
     window->setLayout(layout);
 
     setWindowTitle("QTGimp - " + tr("Main window"));
