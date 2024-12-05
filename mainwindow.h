@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow
         void createActions();
         void createMenus();
 
+        //MenuBarHandler *menuBarHandler;
         QMenu *fileMenu;
         QAction *openFile;
         QAction *saveFile;

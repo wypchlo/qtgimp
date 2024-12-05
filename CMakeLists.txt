@@ -10,6 +10,8 @@ qt_add_executable(qtgimp
     main.cpp
     mainwindow.cpp
     mainwindow.h
+    menubarhandler.h
+    menubarhandler.cpp
 )
 
 target_link_libraries(qtgimp
