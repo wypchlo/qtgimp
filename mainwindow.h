@@ -7,8 +7,16 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    public:
+        MainWindow(QWidget *parent = nullptr);
+        ~MainWindow();
+
+    private:
+        void createActions();
+        void createMenus();
+
+        QMenu *fileMenu;
+        QAction *openFile;
+        QAction *saveFile;
 };
 #endif // MAINWINDOW_H
