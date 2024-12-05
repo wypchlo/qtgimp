@@ -2,7 +2,8 @@
 #define MENUBARHANDLER_H
 
 #include <QtWidgets>
-#include "mainwindow.h"
+
+class MainWindow;
 
 class MenuBarHandler : public QObject
 {

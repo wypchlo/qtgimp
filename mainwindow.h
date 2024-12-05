@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include "menubarhandler.h"
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -15,7 +17,7 @@ class MainWindow : public QMainWindow
         void createActions();
         void createMenus();
 
-        //MenuBarHandler *menuBarHandler;
+        MenuBarHandler *menuBarHandler;
         QMenu *fileMenu;
         QAction *openFile;
         QAction *saveFile;

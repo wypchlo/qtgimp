@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     window->setLayout(layout);
 
-    /*menuBarHandler =*/ new MenuBarHandler(this);
+    menuBarHandler = new MenuBarHandler(this);
 
     //General window settings
 
@@ -24,5 +24,5 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 }
 
 MainWindow::~MainWindow() {
-
+    delete menuBarHandler;
 }
