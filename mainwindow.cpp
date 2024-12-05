@@ -8,11 +8,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QVBoxLayout *layout = new QVBoxLayout;
 
-
+    QLabel *testlabel = new QLabel(tr("This is simply a test to check if the layout is working"));
+    QLabel *testlabel2 = new QLabel(tr("This is simply a second test to check if the layout is working"));
+    //should appear one after another
 
     QString greeter = tr("Welcome to QTGimp!");
     statusBar()->showMessage(greeter);
 
+    layout->addWidget(testlabel);
+    layout->addWidget(testlabel2);
     window->setLayout(layout);
 
     setWindowTitle("QTGimp - " + tr("Main window"));
