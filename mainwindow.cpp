@@ -8,9 +8,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QVBoxLayout *layout = new QVBoxLayout;
 
-    QLabel *testlabel = new QLabel(tr("This is simply a test to check if the layout is working"));
-    QLabel *testlabel2 = new QLabel(tr("This is simply a second test to check if the layout is working"));
-    //should appear one after another
+    QLabel *testlabel = new QLabel(tr("This should be alligned to the top of the layout"));
+    testlabel->setAlignment(Qt::AlignTop);
+
+    QLabel *testlabel2 = new QLabel(tr("This should be alligned to the bottom of the layout"));
+    testlabel2->setAlignment(Qt::AlignBottom);
 
     QString greeter = tr("Welcome to QTGimp!");
     statusBar()->showMessage(greeter);
