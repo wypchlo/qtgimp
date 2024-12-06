@@ -34,10 +34,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QGraphicsView *view = new QGraphicsView(scene);
 
+    view->scale(10, 10);
+
     layout->addWidget(view);
     window->setLayout(layout);
-
-    //General window settings
 
     setWindowTitle("QTGimp - " + tr("Main window"));
     setMinimumSize(300, 200);
