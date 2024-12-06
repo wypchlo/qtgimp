@@ -30,6 +30,7 @@ void MenuBarHandler::openFile() {
     fileDialog->setWindowTitle(tr("Open File"));
 
     QUrl filePath = fileDialog->getOpenFileUrl();
+    mainWindow->canvasHandler->openPBM();
 }
 
 void MenuBarHandler::createMenus() {

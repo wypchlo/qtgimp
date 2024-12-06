@@ -10,12 +10,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QVBoxLayout *layout = new QVBoxLayout;
 
-    menuBarHandler = new MenuBarHandler(this);
-
     statusBar()->showMessage(tr("Welcome to QTGimp!"));
 
+    menuBarHandler = new MenuBarHandler(this);
     canvasHandler = new CanvasHandler(layout);
-    canvasHandler->openPBM(); 
 
     window->setLayout(layout);
 

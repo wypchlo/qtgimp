@@ -14,13 +14,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    CanvasHandler *canvasHandler;
+    MenuBarHandler *menuBarHandler;
+
 private:
     void createActions();
     void createMenus();
 
     void openFile();
-    
-    CanvasHandler *canvasHandler;
-    MenuBarHandler *menuBarHandler;
 };
 #endif // MAINWINDOW_H
