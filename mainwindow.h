@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include "menubarhandler.h"
+#include "canvashandler.h"
 
 class MainWindow : public QMainWindow
 {
@@ -18,7 +19,8 @@ private:
     void createMenus();
 
     void openFile();
-
+    
+    CanvasHandler *canvasHandler;
     MenuBarHandler *menuBarHandler;
 };
 #endif // MAINWINDOW_H

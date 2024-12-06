@@ -3,7 +3,8 @@
 #include "menubarhandler.h"
 #include "mainwindow.h"
 
-MenuBarHandler::MenuBarHandler(MainWindow *mainWindow) {
+MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
+    mainWindow = _mainWindow;
     menuBar = mainWindow->menuBar();
 
     createActions();
@@ -12,19 +13,29 @@ MenuBarHandler::MenuBarHandler(MainWindow *mainWindow) {
 
 
 void MenuBarHandler::createActions() {
-    openFile = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), tr("Open"), this);
-    openFile->setShortcuts(QKeySequence::Open);
-    openFile->setStatusTip(tr("Open an existing file"));
+    openFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), tr("Open"), this);
+    openFileAction->setShortcuts(QKeySequence::Open);
+    openFileAction->setStatusTip(tr("Open an existing file"));
+    connect(openFileAction, &QAction::triggered, this, &MenuBarHandler::openFile);
 
-    saveFile = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), tr("Save"), this);
-    saveFile->setShortcuts(QKeySequence::Save);
-    saveFile->setStatusTip(tr("Save the file to disk"));
+    saveFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), tr("Save"), this);
+    saveFileAction->setShortcuts(QKeySequence::Save);
+    saveFileAction->setStatusTip(tr("Save the file to disk"));
+}
+
+void MenuBarHandler::openFile() {
+    QFileDialog *fileDialog = new QFileDialog(mainWindow); 
+    fileDialog->setDirectory(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation));
+    fileDialog->setNameFilter("Image Files (*.pbm *.pgm *.ppm)");
+    fileDialog->setWindowTitle(tr("Open File"));
+
+    QUrl filePath = fileDialog->getOpenFileUrl();
 }
 
 void MenuBarHandler::createMenus() {
     fileMenu = menuBar->addMenu(tr("File"));
-    fileMenu->addAction(openFile);
-    fileMenu->addAction(saveFile);
+    fileMenu->addAction(openFileAction);
+    fileMenu->addAction(saveFileAction);
 }
 
 MenuBarHandler::~MenuBarHandler() {

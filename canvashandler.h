@@ -2,7 +2,8 @@
 #define CANVASHANDLER_H
 
 #include <QtWidgets>
-#include "mainwindow.h"
+
+class MainWindow;
 
 class CanvasHandler : public QObject
 {
