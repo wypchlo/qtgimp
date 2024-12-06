@@ -15,6 +15,8 @@ qt_add_executable(qtgimp
     menubarhandler.cpp
     canvashandler.cpp
     canvashandler.h
+    imageopener.cpp
+    imageopener.h
 )
 
 target_link_libraries(qtgimp

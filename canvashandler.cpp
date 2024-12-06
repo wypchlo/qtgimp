@@ -1,33 +1,30 @@
 #include <QtWidgets>
 
+#include "imageopener.h"
 #include "canvashandler.h"
 
 CanvasHandler::CanvasHandler(QVBoxLayout *layout) {
     scene = new QGraphicsScene;
     view = new QGraphicsView(scene);
-    view->scale(10, 10);
+    //view->scale(10, 10);
 
     layout->addWidget(view);
 }
 
-void CanvasHandler::openPBM() {
-    QImage *image = new QImage(3, 3, QImage::Format_Mono);
+void CanvasHandler::openFile(QUrl filePath) {
+    QFileInfo *fileInfo = new QFileInfo(filePath.toString());    
+    QString fileType = fileInfo->suffix();
 
-    image->setPixel(0, 0, 0);
-    image->setPixel(1, 0, 1);
-    image->setPixel(2, 0, 1);
-    image->setPixel(0, 1, 0);
-    image->setPixel(1, 1, 1);
-    image->setPixel(2, 1, 1);
-    image->setPixel(0, 2, 0);
-    image->setPixel(1, 2, 0);
-    image->setPixel(2, 2, 0);
+    if(fileType == "pbm") {
+        ImageOpener *imageOpener = new ImageOpener;
+        imageOpener->openPBM(filePath.toLocalFile());
+        
+        QPixmap pixmap = QPixmap::fromImage(*imageOpener->getQImage());
 
-    QPixmap pixmap = QPixmap::fromImage(*image);
+        QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem(pixmap);
 
-    QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem(pixmap);
-
-    scene->addItem(pixmapItem);
+        scene->addItem(pixmapItem);   
+    }
 }
 
 CanvasHandler::~CanvasHandler() {

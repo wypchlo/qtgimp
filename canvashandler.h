@@ -13,7 +13,7 @@ public:
     CanvasHandler(QVBoxLayout *layout);
     ~CanvasHandler();
 
-    void openPBM();
+    void openFile(QUrl filePath);
 
 private:
     QGraphicsScene *scene;
