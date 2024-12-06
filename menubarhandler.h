@@ -13,14 +13,15 @@ public:
     MenuBarHandler(MainWindow *mainWindow);
     ~MenuBarHandler();
 
+    QAction *openFile;
+    QAction *saveFile;
+
 private:
     void createMenus();
     void createActions();
 
     QMenuBar *menuBar;
     QMenu *fileMenu;
-    QAction *openFile;
-    QAction *saveFile;
 };
 
 #endif // MENUBARHANDLER_H

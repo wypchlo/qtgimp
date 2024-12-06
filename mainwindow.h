@@ -9,17 +9,16 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-    public:
-        MainWindow(QWidget *parent = nullptr);
-        ~MainWindow();
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
-    private:
-        void createActions();
-        void createMenus();
+private:
+    void createActions();
+    void createMenus();
 
-        MenuBarHandler *menuBarHandler;
-        QMenu *fileMenu;
-        QAction *openFile;
-        QAction *saveFile;
+    void openFile();
+
+    MenuBarHandler *menuBarHandler;
 };
 #endif // MAINWINDOW_H

@@ -1,3 +1,4 @@
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 cmake_minimum_required(VERSION 3.19)
 project(qtgimp LANGUAGES CXX)
 
@@ -12,6 +13,8 @@ qt_add_executable(qtgimp
     mainwindow.h
     menubarhandler.h
     menubarhandler.cpp
+    canvashandler.cpp
+    canvashandler.h
 )
 
 target_link_libraries(qtgimp
@@ -33,4 +36,5 @@ qt_generate_deploy_app_script(
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
+
 install(SCRIPT ${deploy_script})
