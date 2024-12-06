@@ -9,12 +9,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     QVBoxLayout *layout = new QVBoxLayout;
 
-    QString greeter = tr("Welcome to QTGimp!");
-    statusBar()->showMessage(greeter);
-
-    window->setLayout(layout);
-
     menuBarHandler = new MenuBarHandler(this);
+    statusBar()->showMessage(tr("Welcome to QTGimp!"));
+
+    QImage *image = new QImage(3, 3, QImage::Format_Mono);
+
+    image->setPixel(0, 0, 0);
+    image->setPixel(1, 0, 1);
+    image->setPixel(2, 0, 1);
+    image->setPixel(0, 1, 0);
+    image->setPixel(1, 1, 1);
+    image->setPixel(2, 1, 1);
+    image->setPixel(0, 2, 0);
+    image->setPixel(1, 2, 0);
+    image->setPixel(2, 2, 0);
+
+    QPixmap pixmap = QPixmap::fromImage(*image);
+
+    QGraphicsScene *scene = new QGraphicsScene;
+
+    QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem(pixmap);
+
+    scene->addItem(pixmapItem);
+
+    QGraphicsView *view = new QGraphicsView(scene);
+
+    layout->addWidget(view);
+    window->setLayout(layout);
 
     //General window settings
 
