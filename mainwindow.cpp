@@ -25,8 +25,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     resize(600, 400);
 }
 
-void MainWindow::openFile() {
-    QUrl filePath = QFileDialog::getOpenFileUrl(this, "Open File", QDir::homePath());
+void MainWindow::openFile() {    
+    QFileDialog *fileDialog = new QFileDialog(this); 
+    fileDialog->setDirectory(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation));
+    fileDialog->setNameFilter("Image Files (*.pbm *.pgm *.ppm)");
+    fileDialog->setWindowTitle(tr("Open File"));
+
+    QUrl filePath = fileDialog->getOpenFileUrl();
+    setWindowTitle(filePath.toString());
 }
 
 MainWindow::~MainWindow() {
