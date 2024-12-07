@@ -1,3 +1,6 @@
+#ifndef IMAGEOPENER_H
+#define IMAGEOPENER_H
+
 #include <QImage>
 
 class ImageOpener
@@ -12,3 +15,5 @@ public:
 private:
     QImage *image;
 };
+
+#endif // IMAGEOPENER_H

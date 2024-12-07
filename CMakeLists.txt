@@ -17,6 +17,8 @@ qt_add_executable(qtgimp
     canvashandler.h
     imageopener.cpp
     imageopener.h
+    imagemodifier.cpp
+    imagemodifier.h
 )
 
 target_link_libraries(qtgimp

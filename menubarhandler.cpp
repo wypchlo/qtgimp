@@ -13,6 +13,8 @@ MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
 
 
 void MenuBarHandler::createActions() {
+    // FILE
+
     openFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), tr("Open"), this);
     openFileAction->setShortcut(QKeySequence::Open);
     openFileAction->setStatusTip(tr("Open an existing file"));
@@ -21,6 +23,19 @@ void MenuBarHandler::createActions() {
     saveFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), tr("Save"), this);
     saveFileAction->setShortcut(QKeySequence::Save);
     saveFileAction->setStatusTip(tr("Save the file to disk"));
+
+    // FILTERS
+
+    desaturationAction = new QAction(tr("Desaturation"), this);
+    desaturationAction->setStatusTip(tr("Image color desaturation"));
+
+    colorInvertionAction = new QAction(tr("Color invertion"), this);
+    colorInvertionAction->setStatusTip(tr("Image color invertion"));
+    connect(colorInvertionAction, &QAction::triggered, this, &MenuBarHandler::imageColorInvertion);
+}
+
+void MenuBarHandler::imageColorInvertion() {
+    mainWindow->canvasHandler->imageColorInvertion();
 }
 
 void MenuBarHandler::openFile() {
@@ -38,6 +53,10 @@ void MenuBarHandler::createMenus() {
     fileMenu = menuBar->addMenu(tr("File"));
     fileMenu->addAction(openFileAction);
     fileMenu->addAction(saveFileAction);
+
+    filtersMenu = menuBar->addMenu(tr("Filters"));
+    filtersMenu->addAction(desaturationAction);
+    filtersMenu->addAction(colorInvertionAction);
 }
 
 MenuBarHandler::~MenuBarHandler() {

@@ -15,9 +15,14 @@ public:
 
     void openFile(QUrl filePath);
 
+    void imageColorInvertion();
+
 private:
     QGraphicsScene *scene;
     QGraphicsView *view;
+    QGraphicsPixmapItem *pixmapItem;
+    QPixmap pixmap;
+    QImage *image;
 };
 
 #endif // CANVASHANDLER_H
