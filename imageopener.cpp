@@ -67,6 +67,16 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
             }
         }
     }
+    //BINARY
+    else if(header == "P4") {
+        qDebug() << "Binary PBM";
+    }
+    else if(header == "P5") {
+        qDebug() << "Binary PGM";
+    }
+    else if(header == "P6") {
+        qDebug() << "Binary PPM";
+    }
 }
 
 QImage* ImageOpener::getQImage() {

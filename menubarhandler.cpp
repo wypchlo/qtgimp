@@ -14,12 +14,12 @@ MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
 
 void MenuBarHandler::createActions() {
     openFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), tr("Open"), this);
-    openFileAction->setShortcuts(QKeySequence::Open);
+    openFileAction->setShortcut(QKeySequence::Open);
     openFileAction->setStatusTip(tr("Open an existing file"));
     connect(openFileAction, &QAction::triggered, this, &MenuBarHandler::openFile);
 
     saveFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), tr("Save"), this);
-    saveFileAction->setShortcuts(QKeySequence::Save);
+    saveFileAction->setShortcut(QKeySequence::Save);
     saveFileAction->setStatusTip(tr("Save the file to disk"));
 }
 
