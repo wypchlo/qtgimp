@@ -53,6 +53,22 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
             }
         }
     }
+    else if(header == "P3") {
+        image = new QImage(width, height, QImage::Format_RGB888);
+
+        std::string line;
+
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; x++ ) {
+                short bytes[3] = { 0, 0, 0 };
+                for( int i = 0; i < 3; i++ ) {
+                    std::getline(file, line);
+                    bytes[i] = std::stoi(line);
+                }
+                image->setPixel(x, y, qRgb(bytes[1], bytes[2], bytes[0]));
+            }
+        }
+    }
 }
 
 QImage* ImageOpener::getQImage() {
