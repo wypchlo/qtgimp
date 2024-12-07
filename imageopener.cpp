@@ -25,18 +25,16 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
     if(header == "P1") {
         image = new QImage(width, height, QImage::Format_Mono);
         
-        int x = 0;
-        int y = 0;
-        std::string line; 
+        char currentChar; 
 
-        while(std::getline(file, line)) {
-            for(int i = 0; i < line.length(); i++) {
-                if(x >= width) {
-                    x = 0;
-                    y++;
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; ) {
+                file.get(currentChar);
+
+                if(currentChar - '0' >= 0) { 
+                    image->setPixel(x, y, (currentChar - '1') * -1); // If I did currentChar - '0' then the colors would be inverted
+                    x++;
                 }
-                image->setPixel(x, y, (line[i] - 49) * -1 );
-                x++;
             }
         }
     }
