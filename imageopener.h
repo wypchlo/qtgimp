@@ -6,7 +6,7 @@ public:
     ImageOpener();
     ~ImageOpener();
 
-    void openPBM(QString filePath);
+    void openAsciiPortableAnyMap(QString filePath);
     QImage* getQImage();
 
 private:

@@ -12,19 +12,13 @@ CanvasHandler::CanvasHandler(QVBoxLayout *layout) {
 }
 
 void CanvasHandler::openFile(QUrl filePath) {
-    QFileInfo *fileInfo = new QFileInfo(filePath.toString());    
-    QString fileType = fileInfo->suffix();
+    ImageOpener *imageOpener = new ImageOpener;
+    imageOpener->openAsciiPortableAnyMap(filePath.toLocalFile());
+    
+    QPixmap pixmap = QPixmap::fromImage(*imageOpener->getQImage());
+    QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem(pixmap);
 
-    if(fileType == "pbm") {
-        ImageOpener *imageOpener = new ImageOpener;
-        imageOpener->openPBM(filePath.toLocalFile());
-        
-        QPixmap pixmap = QPixmap::fromImage(*imageOpener->getQImage());
-
-        QGraphicsPixmapItem *pixmapItem = new QGraphicsPixmapItem(pixmap);
-
-        scene->addItem(pixmapItem);   
-    }
+    scene->addItem(pixmapItem);
 }
 
 CanvasHandler::~CanvasHandler() {
