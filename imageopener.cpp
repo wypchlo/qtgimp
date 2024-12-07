@@ -31,7 +31,7 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
         for( int y = 0; y < height; y++ ) {
             for( int x = 0; x < width; ) {
                 file.get(currentChar);
-
+                
                 if(currentChar - '0' >= 0) { 
                     image->setPixel(x, y, (currentChar - '1') * -1); // If I did currentChar - '0' then the colors would be inverted
                     x++;
@@ -86,10 +86,28 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
         }
     }
     else if(header == "P5") {
-        qDebug() << "Binary PGM";
+        image = new QImage(width, height, QImage::Format_RGB888);
+         
+        char byte;
+        
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; x++ ) {
+                file.get(byte);
+                image->setPixel(x, y, qRgb(byte, byte, byte));
+            }
+        }
     }
     else if(header == "P6") {
-        qDebug() << "Binary PPM";
+        image = new QImage(width, height, QImage::Format_RGB888);  
+        
+        char rgb[3] = {0, 0, 0};
+
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; x++ ) {
+                for( int i = 0; i < 3; i++ ) file.get(rgb[i]);
+                image->setPixel(x, y, qRgb(rgb[1], rgb[2], rgb[0]));
+            }
+        }
     }
 }
 
