@@ -2,6 +2,7 @@
 #include <QDebug>
 
 #include <fstream>
+#include <iterator>
 
 #include "imageopener.h"
 
@@ -69,7 +70,20 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
     }
     //BINARY
     else if(header == "P4") {
-        qDebug() << "Binary PBM";
+        image = new QImage(width, height, QImage::Format_Mono);
+        
+        char byte;
+
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; ) {
+                file.get(byte);
+                for (int i = 7; i >= 0; --i) {
+                    bool bit = (byte >> i) & 1;
+                    image->setPixel(x, y, !bit);
+                    x++;
+                }
+            }
+        }
     }
     else if(header == "P5") {
         qDebug() << "Binary PGM";
