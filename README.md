@@ -1,8 +1,5 @@
 # QtGimp
 
-![Preview](https://github.com/wypchlo/qtgimp/blob/main/preview/qtgimp.png) 
-
-
 **Current goals for the project:** <br>
 <br>
 [✓] - Functionality for opening Portable AnyMap files: <br>
