@@ -28,8 +28,10 @@ void MenuBarHandler::openFile() {
     fileDialog->setDirectory(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation));
     fileDialog->setNameFilter(tr("Portable AnyMap Files (*.pbm *.pgm *.ppm)"));
     fileDialog->setWindowTitle(tr("Open File"));
-
-    mainWindow->canvasHandler->openFile(fileDialog->getOpenFileUrl());
+    
+    QUrl fileUrl = fileDialog->getOpenFileUrl();
+    if(fileUrl.isEmpty()) return;
+    mainWindow->canvasHandler->openFile(fileUrl);
 }
 
 void MenuBarHandler::createMenus() {
