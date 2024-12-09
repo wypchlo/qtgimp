@@ -1,7 +1,7 @@
 #include <QtWidgets>
 
-#include "menubarhandler.h"
-#include "mainwindow.h"
+#include "menubar_handler.h"
+#include "main_window.h"
 
 MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
     mainWindow = _mainWindow;

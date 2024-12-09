@@ -1,4 +1,8 @@
+set(CMAKE_CXX_FLAGS "")
+set(CMAKE_C_FLAGS "")
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 cmake_minimum_required(VERSION 3.19)
 project(qtgimp LANGUAGES CXX)
 
@@ -9,16 +13,16 @@ qt_standard_project_setup()
 qt_add_executable(qtgimp
     WIN32 MACOSX_BUNDLE
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    menubarhandler.h
-    menubarhandler.cpp
-    canvashandler.cpp
-    canvashandler.h
-    imageopener.cpp
-    imageopener.h
-    imagemodifier.cpp
-    imagemodifier.h
+    main_window.cpp
+    main_window.h
+    menubar_handler.h
+    menubar_handler.cpp
+    canvas_handler.cpp
+    canvas_handler.h
+    image_opener.cpp
+    image_opener.h
+    image_modifier.cpp
+    image_modifier.h
 )
 
 target_link_libraries(qtgimp

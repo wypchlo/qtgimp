@@ -1,8 +1,7 @@
 #include <QtWidgets>
-
-#include "imageopener.h"
-#include "imagemodifier.h"
-#include "canvashandler.h"
+#include "image_opener.h"
+#include "image_modifier.h"
+#include "canvas_handler.h"
 
 CanvasHandler::CanvasHandler(QVBoxLayout *layout) {
     scene = new QGraphicsScene;

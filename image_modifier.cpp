@@ -1,6 +1,6 @@
 #include <QImage>
 
-#include "imagemodifier.h"
+#include "image_modifier.h"
 
 ImageModifier::ImageModifier() {
 

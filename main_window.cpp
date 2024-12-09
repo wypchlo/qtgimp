@@ -1,8 +1,8 @@
 #include <QtWidgets>
 
-#include "mainwindow.h"
-#include "menubarhandler.h"
-#include "canvashandler.h"
+#include "main_window.h"
+#include "menubar_handler.h"
+#include "canvas_handler.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QWidget *window = new QWidget;

@@ -1,5 +1,4 @@
-#ifndef CANVASHANDLER_H
-#define CANVASHANDLER_H
+#pragma once
 
 #include <QtWidgets>
 
@@ -24,5 +23,3 @@ private:
     QPixmap pixmap;
     QImage *image;
 };
-
-#endif // CANVASHANDLER_H

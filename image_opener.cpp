@@ -2,9 +2,8 @@
 #include <QDebug>
 
 #include <fstream>
-#include <iterator>
 
-#include "imageopener.h"
+#include "image_opener.h"
 
 ImageOpener::ImageOpener() {
     image = new QImage(0, 0, QImage::Format_Mono);

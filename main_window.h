@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 
-#include "menubarhandler.h"
-#include "canvashandler.h"
+#include "menubar_handler.h"
+#include "canvas_handler.h"
 
 class MainWindow : public QMainWindow
 {
