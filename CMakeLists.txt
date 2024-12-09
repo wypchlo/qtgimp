@@ -13,16 +13,14 @@ qt_standard_project_setup()
 qt_add_executable(qtgimp
     WIN32 MACOSX_BUNDLE
     main.cpp
-    main_window.cpp
-    main_window.h
-    menubar_handler.h
-    menubar_handler.cpp
-    canvas_handler.cpp
-    canvas_handler.h
-    image_opener.cpp
-    image_opener.h
-    image_modifier.cpp
-    image_modifier.h
+    src/ui/main_window.cpp
+    src/ui/main_window.h
+    src/ui/menu_bar.h
+    src/ui/menu_bar.cpp
+    src/ui/canvas.cpp
+    src/ui/canvas.h
+    src/utils/image_handler.cpp
+    src/utils/image_handler.h
 )
 
 target_link_libraries(qtgimp
@@ -43,6 +41,10 @@ qt_generate_deploy_app_script(
     TARGET qtgimp
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
+)
+
+target_include_directories(qtgimp PRIVATE
+    ${PROJECT_SOURCE_DIR}/src
 )
 
 install(SCRIPT ${deploy_script})

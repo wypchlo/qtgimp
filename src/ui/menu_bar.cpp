@@ -1,9 +1,9 @@
 #include <QtWidgets>
 
-#include "menubar_handler.h"
-#include "main_window.h"
+#include "ui/menu_bar.h"
+#include "ui/main_window.h"
 
-MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
+MenuBar::MenuBar(MainWindow *_mainWindow) {
     mainWindow = _mainWindow;
     menuBar = mainWindow->menuBar();
 
@@ -12,13 +12,13 @@ MenuBarHandler::MenuBarHandler(MainWindow *_mainWindow) {
 }
 
 
-void MenuBarHandler::createActions() {
+void MenuBar::createActions() {
     // FILE
 
     openFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), tr("Open"), this);
     openFileAction->setShortcut(QKeySequence::Open);
     openFileAction->setStatusTip(tr("Open an existing file"));
-    connect(openFileAction, &QAction::triggered, this, &MenuBarHandler::openFile);
+    connect(openFileAction, &QAction::triggered, this, &MenuBar::openFile);
 
     saveFileAction = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSave), tr("Save"), this);
     saveFileAction->setShortcut(QKeySequence::Save);
@@ -31,14 +31,14 @@ void MenuBarHandler::createActions() {
 
     colorInvertionAction = new QAction(tr("Color invertion"), this);
     colorInvertionAction->setStatusTip(tr("Image color invertion"));
-    connect(colorInvertionAction, &QAction::triggered, this, &MenuBarHandler::imageColorInvertion);
+    connect(colorInvertionAction, &QAction::triggered, this, &MenuBar::imageColorInvertion);
 }
 
-void MenuBarHandler::imageColorInvertion() {
-    mainWindow->canvasHandler->imageColorInvertion();
+void MenuBar::imageColorInvertion() {
+    mainWindow->canvasUi->imageColorInvertion();
 }
 
-void MenuBarHandler::openFile() {
+void MenuBar::openFile() {
     QFileDialog *fileDialog = new QFileDialog(mainWindow); 
     fileDialog->setDirectory(QStandardPaths::writableLocation(QStandardPaths::PicturesLocation));
     fileDialog->setNameFilter(tr("Portable AnyMap Files (*.pbm *.pgm *.ppm)"));
@@ -46,10 +46,10 @@ void MenuBarHandler::openFile() {
     
     QUrl fileUrl = fileDialog->getOpenFileUrl();
     if(fileUrl.isEmpty()) return;
-    mainWindow->canvasHandler->openFile(fileUrl);
+    mainWindow->canvasUi->openFile(fileUrl);
 }
 
-void MenuBarHandler::createMenus() {
+void MenuBar::createMenus() {
     fileMenu = menuBar->addMenu(tr("File"));
     fileMenu->addAction(openFileAction);
     fileMenu->addAction(saveFileAction);
@@ -59,6 +59,6 @@ void MenuBarHandler::createMenus() {
     filtersMenu->addAction(colorInvertionAction);
 }
 
-MenuBarHandler::~MenuBarHandler() {
+MenuBar::~MenuBar() {
 
 }

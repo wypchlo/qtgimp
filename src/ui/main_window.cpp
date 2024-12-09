@@ -1,8 +1,8 @@
 #include <QtWidgets>
 
-#include "main_window.h"
-#include "menubar_handler.h"
-#include "canvas_handler.h"
+#include "ui/main_window.h"
+#include "ui/menu_bar.h"
+#include "ui/canvas.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     QWidget *window = new QWidget;
@@ -12,8 +12,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
     statusBar()->showMessage(tr("Welcome to QTGimp!"));
 
-    menuBarHandler = new MenuBarHandler(this);
-    canvasHandler = new CanvasHandler(layout);
+    menuBarUi = new MenuBar(this);
+    canvasUi = new Canvas(layout);
 
     window->setLayout(layout);
 
@@ -23,5 +23,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 }
 
 MainWindow::~MainWindow() {
-    delete menuBarHandler;
+    delete menuBarUi;
+    delete canvasUi;
 }

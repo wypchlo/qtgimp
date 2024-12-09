@@ -1,9 +1,8 @@
 #include <QtWidgets>
-#include "image_opener.h"
-#include "image_modifier.h"
-#include "canvas_handler.h"
+#include "utils/image_handler.h"
+#include "ui/canvas.h"
 
-CanvasHandler::CanvasHandler(QVBoxLayout *layout) {
+Canvas::Canvas(QVBoxLayout *layout) {
     scene = new QGraphicsScene;
     view = new QGraphicsView(scene);
     pixmapItem = new QGraphicsPixmapItem;
@@ -13,28 +12,25 @@ CanvasHandler::CanvasHandler(QVBoxLayout *layout) {
     layout->addWidget(view);
 }
 
-void CanvasHandler::openFile(QUrl filePath) {
+void Canvas::openFile(QUrl filePath) {
     pixmapItem->clearFocus();
     scene->removeItem(pixmapItem);
 
-    ImageOpener *imageOpener = new ImageOpener;
-    imageOpener->openAsciiPortableAnyMap(filePath.toLocalFile());
-    
-    image = imageOpener->getQImage();
+    image = ImageHandler::openPortableAnyMap(filePath.toLocalFile());
+
     pixmap = QPixmap::fromImage(*image);
     pixmapItem = new QGraphicsPixmapItem(pixmap);
 
     scene->addItem(pixmapItem);
-
     scene->update();
 }
 
-void CanvasHandler::imageColorInvertion() {
-    ImageModifier::invertColor(image);
+void Canvas::imageColorInvertion() {
+    ImageHandler::invertColor(image);
     pixmap = QPixmap::fromImage(*image);
     pixmapItem->setPixmap(pixmap);
 }
 
-CanvasHandler::~CanvasHandler() {
+Canvas::~Canvas() {
 
 }

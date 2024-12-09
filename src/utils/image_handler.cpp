@@ -1,22 +1,22 @@
 #include <QImage>
 #include <QDebug>
-
 #include <fstream>
 
-#include "image_opener.h"
+#include "image_handler.h"
 
-ImageOpener::ImageOpener() {
-    image = new QImage(0, 0, QImage::Format_Mono);
-}
+ImageHandler::ImageHandler() {}
 
-void ImageOpener::openAsciiPortableAnyMap(QString filePath) 
+using std::ifstream, std::string;
+QImage* ImageHandler::openPortableAnyMap(QString filePath) 
 {
-    std::ifstream file(filePath.toStdString());
-    std::string header, comment, dimensions; 
+    QImage *image;
 
-    std::getline(file, header);
-    std::getline(file, comment);
-    std::getline(file, dimensions);
+    ifstream file(filePath.toStdString());
+    string header, comment, dimensions; 
+
+    getline(file, header);
+    getline(file, comment);
+    getline(file, dimensions);
    
     short splitPosition = dimensions.find(' ');
     short width = std::stoi(dimensions.substr(0, splitPosition));
@@ -108,10 +108,31 @@ void ImageOpener::openAsciiPortableAnyMap(QString filePath)
             }
         }
     }
-}
 
-QImage* ImageOpener::getQImage() {
     return image;
 }
 
-ImageOpener::~ImageOpener() {}
+void ImageHandler::invertColor(QImage *image) {
+    QImage::Format imageFormat = image->format();
+    int width = image->width();
+    int height = image->height();
+
+    if(imageFormat == QImage::Format_RGB888) {
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; x++ ) {
+                QColor color = image->pixelColor(x, y);
+                image->setPixelColor(x, y, qRgb(255 - color.red(), 255 - color.green(), 255 - color.blue()));
+            }
+        }
+    }
+    else if(imageFormat == QImage::Format_Mono) {
+        for( int y = 0; y < height; y++ ) {
+            for( int x = 0; x < width; x++ ) {
+                bool color = image->pixelColor(x, y).red();
+                image->setPixel(x, y, !color);
+            }
+        }
+    }
+}
+
+ImageHandler::~ImageHandler() {}

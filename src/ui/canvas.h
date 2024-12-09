@@ -1,16 +1,17 @@
-#pragma once
+#ifndef UI_CANVAS_H
+#define UI_CANVAS_H
 
 #include <QtWidgets>
 
 class MainWindow;
 
-class CanvasHandler : public QObject
+class Canvas : public QObject
 {
     Q_OBJECT
 
 public:
-    CanvasHandler(QVBoxLayout *layout);
-    ~CanvasHandler();
+    Canvas(QVBoxLayout *layout);
+    ~Canvas();
 
     void openFile(QUrl filePath);
 
@@ -23,3 +24,5 @@ private:
     QPixmap pixmap;
     QImage *image;
 };
+
+#endif // UI_CANVAS_H

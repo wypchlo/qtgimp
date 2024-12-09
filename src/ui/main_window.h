@@ -1,10 +1,10 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef UI_MAINWINDOW_H
+#define UI_MAINWINDOW_H
 
 #include <QMainWindow>
 
-#include "menubar_handler.h"
-#include "canvas_handler.h"
+#include "ui/menu_bar.h"
+#include "ui/canvas.h"
 
 class MainWindow : public QMainWindow
 {
@@ -14,8 +14,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    CanvasHandler *canvasHandler;
-    MenuBarHandler *menuBarHandler;
+    Canvas *canvasUi;
+    MenuBar *menuBarUi;
 
 private:
     void createActions();
@@ -23,4 +23,5 @@ private:
 
     void openFile();
 };
-#endif // MAINWINDOW_H
+
+#endif // UI_MAINWINDOW_H

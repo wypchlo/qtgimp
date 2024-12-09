@@ -1,17 +1,17 @@
-#ifndef MENUBARHANDLER_H
-#define MENUBARHANDLER_H
+#ifndef UI_MENU_BAR_H
+#define UI_MENU_BAR_H
 
 #include <QtWidgets>
 
 class MainWindow;
 
-class MenuBarHandler : public QObject
+class MenuBar : public QObject
 {
     Q_OBJECT
 
 public:
-    MenuBarHandler(MainWindow *mainWindow);
-    ~MenuBarHandler();
+    MenuBar(MainWindow *mainWindow);
+    ~MenuBar();
 
     QAction *openFileAction;
     QAction *saveFileAction;
@@ -32,4 +32,4 @@ private:
     QMenu *filtersMenu;
 };
 
-#endif // MENUBARHANDLER_H
+#endif // UI_MENU_BAR_H
