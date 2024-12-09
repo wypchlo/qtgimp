@@ -1,6 +1,6 @@
-#include <QtWidgets>
+#include "main_window.h"
 
-#include "ui/main_window.h"
+#include <QtWidgets>
 #include "ui/menu_bar.h"
 #include "ui/canvas.h"
 

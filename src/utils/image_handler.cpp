@@ -1,8 +1,8 @@
+#include "image_handler.h"
+
 #include <QImage>
 #include <QDebug>
 #include <fstream>
-
-#include "image_handler.h"
 
 ImageHandler::ImageHandler() {}
 

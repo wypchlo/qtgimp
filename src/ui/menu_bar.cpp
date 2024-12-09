@@ -1,6 +1,6 @@
-#include <QtWidgets>
+#include "menu_bar.h"
 
-#include "ui/menu_bar.h"
+#include <QtWidgets>
 #include "ui/main_window.h"
 
 MenuBar::MenuBar(MainWindow *_mainWindow) {

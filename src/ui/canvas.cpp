@@ -1,6 +1,7 @@
+#include "canvas.h"
+
 #include <QtWidgets>
 #include "utils/image_handler.h"
-#include "ui/canvas.h"
 
 Canvas::Canvas(QVBoxLayout *layout) {
     scene = new QGraphicsScene;
