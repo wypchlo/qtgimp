@@ -38,7 +38,47 @@ void MenuBar::createActions() {
 }
 
 void MenuBar::imageColorInvertion() { mainWindow->canvasUi->imageColorInvertion(); }
-void MenuBar::imageDesaturation() { mainWindow->canvasUi->imageDesaturation(); }
+void MenuBar::imageDesaturation() { 
+    QDialog *dialog = new QDialog();
+    QVBoxLayout *layout = new QVBoxLayout(); 
+
+    QHBoxLayout *percentLayout = new QHBoxLayout();
+    QSlider *percentSlider = new QSlider(Qt::Horizontal, dialog); 
+    QLabel *percentLabel = new QLabel(tr("Percent: "));
+
+    percentSlider->setRange(0, 100); 
+    percentLayout->addWidget(percentLabel);
+    percentLayout->addWidget(percentSlider);
+    
+    QHBoxLayout *buttonsLayout = new QHBoxLayout();
+    QPushButton *confirm = new QPushButton(tr("Confirm"), dialog);
+    QPushButton *cancel = new QPushButton(tr("Cancel"), dialog);
+    
+    buttonsLayout->addWidget(confirm);
+    buttonsLayout->addWidget(cancel);
+    
+    layout->addLayout(percentLayout);
+    layout->addLayout(buttonsLayout);
+
+    dialog->setLayout(layout);
+    dialog->setWindowTitle(tr("Desaturate image"));
+    dialog->show();
+    
+    connect(percentSlider, &QSlider::valueChanged, [=]() {
+        mainWindow->canvasUi->imageDesaturationPreview(percentSlider->value());
+    });
+    
+    connect(confirm, &QPushButton::pressed, [=]() {
+        mainWindow->canvasUi->imageDesaturation(percentSlider->value());
+        dialog->hide();
+    });
+
+    connect(cancel, &QPushButton::pressed, [=]() {
+        mainWindow->canvasUi->imageDesaturation(0);
+        dialog->hide();
+    });
+}
+
 void MenuBar::imageBrightness() {
     QDialog *dialog = new QDialog();
     QVBoxLayout *layout = new QVBoxLayout(); 

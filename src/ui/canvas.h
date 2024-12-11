@@ -17,7 +17,8 @@ public:
     void openFile(QUrl filePath);
 
     void imageColorInvertion();
-    void imageDesaturation();
+    void imageDesaturation(uint8_t percent);
+    void imageDesaturationPreview(uint8_t percent);
     void imageBrightness(int8_t tilt);
     void imageBrightnessPreview(int8_t tilt);
 

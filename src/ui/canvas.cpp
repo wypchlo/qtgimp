@@ -33,9 +33,16 @@ void Canvas::imageColorInvertion() {
     pixmapItem->setPixmap(pixmap);
 }
 
-void Canvas::imageDesaturation() {
-    ImageHandler::desaturate(image, 100);
+void Canvas::imageDesaturation(uint8_t percent) {
+    ImageHandler::desaturate(image, percent);
     pixmap = QPixmap::fromImage(*image);
+    pixmapItem->setPixmap(pixmap);
+}
+
+void Canvas::imageDesaturationPreview(uint8_t percent) {
+    QImage previewImage = image->copy();
+    ImageHandler::desaturate(&previewImage, percent);
+    pixmap = QPixmap::fromImage(previewImage);
     pixmapItem->setPixmap(pixmap);
 }
 

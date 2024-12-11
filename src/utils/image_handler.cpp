@@ -162,7 +162,8 @@ void ImageHandler::desaturate(QImage *image, uint8_t percent) {
             g = rgb.green();
             b = rgb.blue();
             uint8_t average = (r + g + b) / 3;
-            image->setPixelColor(x, y, qRgb(rgb.red(), rgb.green(), rgb.blue()));
+            double p = percent / 100.0;
+            image->setPixelColor(x, y, qRgb(r + (average - r)*p, g + (average - g)*p, b + (average - b)*p));
         }
     }
 }
