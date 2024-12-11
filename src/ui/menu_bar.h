@@ -18,6 +18,7 @@ public:
 
     QAction *desaturationAction;
     QAction *colorInvertionAction;
+    QAction *brightnessAction;
 
 private:
     void createMenus();
@@ -25,11 +26,15 @@ private:
 
     void openFile();
     void imageColorInvertion();
+    void imageDesaturation();
+    void imageBrightness();
+    void imageMath();
     
     MainWindow *mainWindow;
     QMenuBar *menuBar;
     QMenu *fileMenu;
-    QMenu *filtersMenu;
+    QMenu *modifiersMenu;
+    QMenu *imageMathSubmenu;
 };
 
 #endif // UI_MENU_BAR_H

@@ -2,6 +2,7 @@
 #define UI_CANVAS_H
 
 #include <QtWidgets>
+#include <cstdint>
 
 class MainWindow;
 
@@ -16,6 +17,9 @@ public:
     void openFile(QUrl filePath);
 
     void imageColorInvertion();
+    void imageDesaturation();
+    void imageBrightness(int8_t tilt);
+    void imageBrightnessPreview(int8_t tilt);
 
 private:
     QGraphicsScene *scene;

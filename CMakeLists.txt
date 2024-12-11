@@ -21,6 +21,8 @@ qt_add_executable(qtgimp
     src/ui/canvas.h
     src/utils/image_handler.cpp
     src/utils/image_handler.h
+    src/utils/bezier.cpp
+    src/utils/bezier.h
 )
 
 target_link_libraries(qtgimp

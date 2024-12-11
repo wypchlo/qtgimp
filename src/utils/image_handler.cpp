@@ -1,4 +1,5 @@
 #include "image_handler.h"
+#include "utils/bezier.h"
 
 #include <QImage>
 #include <QDebug>
@@ -114,23 +115,54 @@ QImage* ImageHandler::openPortableAnyMap(QString filePath)
 
 void ImageHandler::invertColor(QImage *image) {
     QImage::Format imageFormat = image->format();
-    int width = image->width();
-    int height = image->height();
 
     if(imageFormat == QImage::Format_RGB888) {
-        for( int y = 0; y < height; y++ ) {
-            for( int x = 0; x < width; x++ ) {
+        for( int y = 0; y < image->height(); y++ ) {
+            for( int x = 0; x < image->width(); x++ ) {
                 QColor color = image->pixelColor(x, y);
                 image->setPixelColor(x, y, qRgb(255 - color.red(), 255 - color.green(), 255 - color.blue()));
             }
         }
     }
     else if(imageFormat == QImage::Format_Mono) {
-        for( int y = 0; y < height; y++ ) {
-            for( int x = 0; x < width; x++ ) {
+        for( int y = 0; y < image->height(); y++ ) {
+            for( int x = 0; x < image->width(); x++ ) {
                 bool color = image->pixelColor(x, y).red();
                 image->setPixel(x, y, !color);
             }
+        }
+    }
+}
+
+void ImageHandler::brighten(QImage *image, uint8_t tilt) {
+    QImage::Format imageFormat = image->format();
+
+    if(imageFormat != QImage::Format_RGB888) return;
+    
+    uint8_t* bezier_values = Bezier::get_bezier_values(uint8_t(255), tilt);
+    
+    for( int y = 0; y < image->height(); y++ ) {
+        for( int x = 0; x < image->width(); x++ ) {
+            QColor rgb = image->pixelColor(x, y);
+            image->setPixelColor(x, y, qRgb(bezier_values[rgb.red()], bezier_values[rgb.green()], bezier_values[rgb.blue()]));
+        }
+    }
+}
+
+void ImageHandler::desaturate(QImage *image, uint8_t percent) {
+    QImage::Format imageFormat = image->format();
+
+    if(imageFormat != QImage::Format_RGB888) return;
+
+    for( int y = 0; y < image->height(); y++ ) {
+        for( int x = 0; x < image->width(); x++ ) {
+            QColor rgb = image->pixelColor(x, y);
+            uint8_t r, g, b;
+            r = rgb.red();
+            g = rgb.green();
+            b = rgb.blue();
+            uint8_t average = (r + g + b) / 3;
+            image->setPixelColor(x, y, qRgb(rgb.red(), rgb.green(), rgb.blue()));
         }
     }
 }

@@ -1,5 +1,6 @@
 #include "canvas.h"
 
+#include<cstdint>
 #include <QtWidgets>
 #include "utils/image_handler.h"
 
@@ -29,6 +30,25 @@ void Canvas::openFile(QUrl filePath) {
 void Canvas::imageColorInvertion() {
     ImageHandler::invertColor(image);
     pixmap = QPixmap::fromImage(*image);
+    pixmapItem->setPixmap(pixmap);
+}
+
+void Canvas::imageDesaturation() {
+    ImageHandler::desaturate(image, 100);
+    pixmap = QPixmap::fromImage(*image);
+    pixmapItem->setPixmap(pixmap);
+}
+
+void Canvas::imageBrightness(int8_t tilt) {
+    ImageHandler::brighten(image, tilt);
+    pixmap = QPixmap::fromImage(*image);
+    pixmapItem->setPixmap(pixmap);
+}
+
+void Canvas::imageBrightnessPreview(int8_t tilt) {
+    QImage previewImage = image->copy();
+    ImageHandler::brighten(&previewImage, tilt);
+    pixmap = QPixmap::fromImage(previewImage);
     pixmapItem->setPixmap(pixmap);
 }
 
